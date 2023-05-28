@@ -1,0 +1,1 @@
+gcc gaussSeidel.c -o gaussSeidel .\lib\algebraLinear.c && .\gaussSeidel.exe
