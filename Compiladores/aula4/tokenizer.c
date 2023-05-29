@@ -31,6 +31,7 @@ TokenTable *tokenizer(char *expr)
         switch (actual_state)
         {
         case 0:
+
             while (*aux >= '0' && *aux <= '9')
             {
                 strncat(token, aux, 1);
@@ -43,9 +44,16 @@ TokenTable *tokenizer(char *expr)
                 break;
             }
             else if (*aux == '+' || *aux == '-' || *aux == '*' || *aux == '/')
+            {
                 actual_state = 0;
-
-            token_table->operators = add_token(token_table->operators, aux);
+                token_table->operators = add_token(token_table->operators, aux);
+            }
+            else if(*aux == '(' || *aux == ')')
+            {
+                actual_state = 0;
+                token_table->parenthesis = add_token(token_table->parenthesis, aux);
+            }
+            
             token_table->numbers = add_token(token_table->numbers, token);
             token = (char *) calloc(1, sizeof(char));
 
@@ -58,9 +66,16 @@ TokenTable *tokenizer(char *expr)
             }
 
             if (*aux == '+' || *aux == '-' || *aux == '*' || *aux == '/')
+            {
                 actual_state = 0;
+                token_table->operators = add_token(token_table->operators, aux);
+            }
+            else if(*aux == '(' || *aux == ')')
+            {
+                actual_state = 0;
+                token_table->parenthesis = add_token(token_table->parenthesis, aux);
+            }
 
-            token_table->operators = add_token(token_table->operators, aux);
             token_table->numbers = add_token(token_table->numbers, token);
             token = (char *) calloc(1, sizeof(char));
 
