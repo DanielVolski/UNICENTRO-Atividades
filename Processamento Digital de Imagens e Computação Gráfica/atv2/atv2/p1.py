@@ -50,14 +50,26 @@ plt.show()
 img_norm = cv2.normalize(img1, np.array([]), 0, 100, cv2.NORM_MINMAX)
 
 #Operador logaritmico
-img_log = np.array((255 / np.log(1 + np.max(img1))) * (np.log(img1 + 1)), dtype=np.uint8)
+img_log = np.array((255 / np.log2(1 + np.max(img1.astype(np.int32)))) * np.log2(img1.astype(np.int32) + 1), dtype=np.uint8)
+img_sig = np.array((255 / (1 + np.exp(-0.010 * (img1.astype(np.int32) - 127)))), dtype=np.uint8)
+
+#Para aplicar a limiarização a imagem precisa estar em escala de cinza
+T = 100
+img_lim = np.zeros(img1_gray.shape)
+img_lim[np.where(img1_gray > T)] = 1
 
 plt.figure(figsize=(16, 16))
 
-plt.subplot(121)
+plt.subplot(241)
 plt.imshow(cv2.cvtColor(img_norm, cv2.COLOR_RGB2BGR))
 
-plt.subplot(122)
+plt.subplot(242)
 plt.imshow(cv2.cvtColor(img_log, cv2.COLOR_RGB2BGR))
+
+plt.subplot(243)
+plt.imshow(cv2.cvtColor(img_sig, cv2.COLOR_RGB2BGR))
+
+plt.subplot(244)
+plt.imshow(img_lim, cmap="gray")
 
 plt.show()
