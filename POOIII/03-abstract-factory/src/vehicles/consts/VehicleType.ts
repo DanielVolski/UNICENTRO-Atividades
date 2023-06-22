@@ -1,0 +1,8 @@
+export default {
+    CAR: "CAR",
+    MOTORCYCLE: "MOTORCYLE",
+    SCOOTER: "SCOOTER",
+    AIRPLANE: "AIRPLANE",
+    DRONE: "DRONE",
+    HELICOPTER: "HELICOPTER",
+}
