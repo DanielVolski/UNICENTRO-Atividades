@@ -1,8 +1,8 @@
-package com.example.meus_gastos.domain.dto;
+package com.example.meus_gastos.domain.dto.usuario;
 
 import java.util.Date;
 
-public class UsuarioRequestDTO {
+public class UsuarioResponseDTO {
     private Long id;
     private String nome;
     private String email;
