@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.meus_gastos.domain.dto.usuario.UsuarioRequestDTO;
@@ -25,6 +26,9 @@ public class UsuarioService implements ICRUDServices<UsuarioRequestDTO, UsuarioR
     @Autowired
     private ModelMapper mapper;
     
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Override
     public List<UsuarioResponseDTO> obterTodos() {
         List<Usuario> usuarios = usuarioRepository.findAll();
@@ -37,7 +41,7 @@ public class UsuarioService implements ICRUDServices<UsuarioRequestDTO, UsuarioR
     @Override
     public UsuarioResponseDTO obterPorId(Long id) {
         Optional<Usuario> optUsuario = usuarioRepository.findById(id);
-        if (optUsuario.isPresent()) {
+        if (optUsuario.isEmpty()) {
             throw new ResourceNotFoundException("Não foi possível encontrar o usuário com o id " + id);
         }
         return mapper.map(optUsuario.get(), UsuarioResponseDTO.class);
@@ -50,12 +54,14 @@ public class UsuarioService implements ICRUDServices<UsuarioRequestDTO, UsuarioR
         
         Optional<Usuario> optUsuario = usuarioRepository.findByEmail(dto.getEmail());
 
-        if (!optUsuario.isPresent())
+        if (!optUsuario.isEmpty())
             throw new BadRequestException("Email " + dto.getEmail() + " já cadastrado");
 
         Usuario usuario = mapper.map(dto, Usuario.class);
         usuario.setDataCadastro(new Date());
-        // Criptografar senha
+        String senha = passwordEncoder.encode(usuario.getSenha());
+        usuario.setSenha(senha);
+        usuario.setId(null);
         usuario = usuarioRepository.save(usuario);
 
         return mapper.map(usuario, UsuarioResponseDTO.class);
@@ -69,8 +75,10 @@ public class UsuarioService implements ICRUDServices<UsuarioRequestDTO, UsuarioR
             throw new BadRequestException("Email e senha são obrigatórios!");
         
         Usuario usuario = mapper.map(dto, Usuario.class);
+        usuario.setSenha(dto.getSenha());
         usuario.setDataCadastro(usuarioBanco.getDataCadastro());
         usuario.setId(id);
+        usuario.setDataInativacao(usuarioBanco.getDataInativacao());
         usuario = usuarioRepository.save(usuario);
 
         return mapper.map(usuario, UsuarioResponseDTO.class);
