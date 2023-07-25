@@ -45,27 +45,27 @@ public class CentroDeCustoService implements ICRUDServices<CentroDeCustoRequestD
 
     @Override
     public CentroDeCustoResponseDTO cadastrar(CentroDeCustoRequestDTO dto) {
-        CentroDeCusto centroDeCusto = mapper.map(dto, CentroDeCusto.class, null);
+        CentroDeCusto centroDeCusto = mapper.map(dto, CentroDeCusto.class);
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         centroDeCusto.setUsuario(usuario);
         centroDeCusto.setId(null);
         centroDeCusto = centroDeCustoRepository.save(centroDeCusto);
 
-        return mapper.map(centroDeCusto, CentroDeCustoResponseDTO.class, null);
+        return mapper.map(centroDeCusto, CentroDeCustoResponseDTO.class);
     }
 
     @Override
     public CentroDeCustoResponseDTO atualizar(Long id, CentroDeCustoRequestDTO dto) {
         obterPorId(id);
-        CentroDeCusto centroDeCusto = mapper.map(dto, CentroDeCusto.class, null);
+        CentroDeCusto centroDeCusto = mapper.map(dto, CentroDeCusto.class);
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         centroDeCusto.setUsuario(usuario);
         centroDeCusto.setId(id);
         centroDeCusto = centroDeCustoRepository.save(centroDeCusto);
 
-        return mapper.map(centroDeCusto, CentroDeCustoResponseDTO.class, null);
+        return mapper.map(centroDeCusto, CentroDeCustoResponseDTO.class);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class CentroDeCustoController {
         return ResponseEntity.ok(centroDeCustoService.obterPorId(id));
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public ResponseEntity<CentroDeCustoResponseDTO> cadastrar(@RequestBody CentroDeCustoRequestDTO dto) {
         CentroDeCustoResponseDTO centroDeCusto = centroDeCustoService.cadastrar(dto);
         return new ResponseEntity<>(centroDeCusto, HttpStatus.CREATED);
