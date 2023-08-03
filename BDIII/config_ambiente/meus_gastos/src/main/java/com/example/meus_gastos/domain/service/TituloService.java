@@ -61,6 +61,8 @@ public class TituloService implements ICRUDServices<TituloRequestDTO, TituloResp
 
     @Override
     public TituloResponseDTO atualizar(Long id, TituloRequestDTO dto) {
+        TituloResponseDTO tituloBanco = obterPorId(id);
+        
         obterPorId(id);
         validarTitulo(dto);
         
@@ -69,7 +71,7 @@ public class TituloService implements ICRUDServices<TituloRequestDTO, TituloResp
 
         titulo.setUsuario(usuario);
         titulo.setId(null);
-        titulo.setDataCadastro(new Date());
+        titulo.setDataCadastro(tituloBanco.getDataCadastro());
         titulo = tituloRepository.save(titulo);
 
         return mapper.map(titulo, TituloResponseDTO.class);
@@ -82,11 +84,17 @@ public class TituloService implements ICRUDServices<TituloRequestDTO, TituloResp
     }
     
     private void validarTitulo(TituloRequestDTO dto) {
+        System.out.println(dto);
         if (dto.getTipo() == null ||
             dto.getDataVencimento() == null || 
             dto.getValor() == null || 
             dto.getDescricao() == null
         )
             throw new BadRequestException("Título inválido - campos obrigatórios");
+    }
+
+    public List<TituloResponseDTO> obterPorDataVencimento(String periodoInicial, String periodoFinal) {
+        List<Titulo> titulos = tituloRepository.obterFluxoCaixaPorDataVencimento(periodoInicial, periodoFinal);
+        return titulos.stream().map(titulo -> mapper.map(titulo, TituloResponseDTO.class)).collect(Collectors.toList());
     }
 }

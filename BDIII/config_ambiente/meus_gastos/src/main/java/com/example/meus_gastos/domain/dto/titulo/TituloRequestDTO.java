@@ -16,14 +16,15 @@ public class TituloRequestDTO {
     public void setTipo(ETipoTitulo tipo) {
         this.tipo = tipo;
     }
-    private List<CentroDeCustoRequestDTO> centroDeCustos;
+    private List<CentroDeCustoRequestDTO> centrosDeCustos;
     private Double valor;
     private Date dataCadastro;
     private Date dataReferencia;
     private Date dataVencimento;
     private Date dataPagamento;
     private String observacao;
-
+    private ETipoTitulo tipoTitulo;
+    
     public Long getId() {
         return id;
     }
@@ -36,11 +37,11 @@ public class TituloRequestDTO {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public List<CentroDeCustoRequestDTO> getCentroDeCustos() {
-        return centroDeCustos;
+    public List<CentroDeCustoRequestDTO> getCentrosDeCustos() {
+        return centrosDeCustos;
     }
-    public void setCentroDeCustos(List<CentroDeCustoRequestDTO> centroDeCustos) {
-        this.centroDeCustos = centroDeCustos;
+    public void setCentrosDeCustos(List<CentroDeCustoRequestDTO> centrosDeCustos) {
+        this.centrosDeCustos = centrosDeCustos;
     }
     public Double getValor() {
         return valor;
@@ -77,6 +78,12 @@ public class TituloRequestDTO {
     }
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+    public ETipoTitulo getTipoTitulo() {
+        return tipoTitulo;
+    }
+    public void setTipoTitulo(ETipoTitulo tipoTitulo) {
+        this.tipoTitulo = tipoTitulo;
     }
 
 }

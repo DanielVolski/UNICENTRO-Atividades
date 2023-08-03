@@ -3,18 +3,27 @@ package com.example.meus_gastos.domain.dto.titulo;
 import java.util.Date;
 import java.util.List;
 
+import com.example.meus_gastos.domain.Enum.ETipoTitulo;
 import com.example.meus_gastos.domain.dto.centrodecusto.CentroDeCustoResponseDTO;
 
 public class TituloResponseDTO {
     private Long id;
     private String descricao;
-    private List<CentroDeCustoResponseDTO> centroDeCustos;
+    private List<CentroDeCustoResponseDTO> centrosDeCustos;
     private Double valor;
     private Date dataCadastro;
     private Date dataReferencia;
     private Date dataVencimento;
     private Date dataPagamento;
     private String observacao;
+    
+    public ETipoTitulo getTipo() {
+        return tipo;
+    }
+    public void setTipo(ETipoTitulo tipo) {
+        this.tipo = tipo;
+    }
+    private ETipoTitulo tipo;
     
     public Long getId() {
         return id;
@@ -28,11 +37,11 @@ public class TituloResponseDTO {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public List<CentroDeCustoResponseDTO> getCentroDeCustos() {
-        return centroDeCustos;
+    public List<CentroDeCustoResponseDTO> getCentrosDeCustos() {
+        return centrosDeCustos;
     }
-    public void setCentroDeCustos(List<CentroDeCustoResponseDTO> centroDeCustos) {
-        this.centroDeCustos = centroDeCustos;
+    public void setCentrosDeCustos(List<CentroDeCustoResponseDTO> centrosDeCustos) {
+        this.centrosDeCustos = centrosDeCustos;
     }
     public Double getValor() {
         return valor;
