@@ -1,0 +1,1 @@
+gcc trab_final.c -o trab_final -lfreeglut -lopengl32 -lglu32
