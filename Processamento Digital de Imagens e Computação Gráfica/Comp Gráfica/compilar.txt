@@ -1,0 +1,1 @@
+gcc -c -o 1.o 1.c -L"G:\Programming Languages\C-CPP-mingw8.1.0\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\mingw64\include" -lfreeglut -lopengl32 && gcc -o 1.exe 1.o -L"G:\Programming Languages\C-CPP-mingw8.1.0\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\mingw64\lib" -lfreeglut -lopengl32
