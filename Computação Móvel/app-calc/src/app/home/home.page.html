@@ -6,33 +6,33 @@
       <ion-input [ngModel]="expression" class="visor"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-fab-button class="first-line">AC</ion-fab-button>
-      <ion-fab-button class="first-line">+/-</ion-fab-button>
-      <ion-fab-button class="first-line">%</ion-fab-button>
-      <ion-fab-button class="last-column">/</ion-fab-button>
+      <ion-button strong="true" size="large" class="first-line">AC</ion-button>
+      <ion-button strong="true" size="large" class="first-line">+/-</ion-button>
+      <ion-button strong="true" size="large" class="first-line">%</ion-button>
+      <ion-button strong="true" size="large" class="last-column" (click)="addOperation(3)">/</ion-button>
     </ion-item>
     <ion-item>
-      <ion-fab-button>7</ion-fab-button>
-      <ion-fab-button>8</ion-fab-button>
-      <ion-fab-button>9</ion-fab-button>
-      <ion-fab-button class="last-column">X</ion-fab-button>
+      <ion-button strong="true" size="large" (click)="showValue('7')">7</ion-button>
+      <ion-button strong="true" size="large" (click)="showValue('8')">8</ion-button>
+      <ion-button strong="true" size="large" (click)="showValue('9')">9</ion-button>
+      <ion-button strong="true" size="large" class="last-column" (click)="addOperation(2)">X</ion-button>
     </ion-item>
     <ion-item>
-      <ion-fab-button>4</ion-fab-button>
-      <ion-fab-button>5</ion-fab-button>
-      <ion-fab-button>6</ion-fab-button>
-      <ion-fab-button class="last-column">-</ion-fab-button>
+      <ion-button strong="true" size="large"(click)="showValue('4')">4</ion-button>
+      <ion-button strong="true" size="large" (click)="showValue('5')">5</ion-button>
+      <ion-button strong="true" size="large" (click)="showValue('6')">6</ion-button>
+      <ion-button strong="true" size="large" class="last-column" (click)="addOperation(1)">-</ion-button>
     </ion-item>
     <ion-item>
-      <ion-fab-button>1</ion-fab-button>
-      <ion-fab-button>2</ion-fab-button>
-      <ion-fab-button>3</ion-fab-button>
-      <ion-fab-button class="last-column">+</ion-fab-button>
+      <ion-button strong="true" size="large" (click)="showValue('1')">1</ion-button>
+      <ion-button strong="true" size="large" (click)="showValue('2')">2</ion-button>
+      <ion-button strong="true" size="large" (click)="showValue('3')">3</ion-button>
+      <ion-button strong="true" size="large" class="last-column" (click)="addOperation(0)">+</ion-button>
     </ion-item>
     <ion-item>
-      <ion-fab-button id="zero-btn">0</ion-fab-button>
-      <ion-fab-button>.</ion-fab-button>
-      <ion-fab-button>=</ion-fab-button>
+      <ion-button strong="true" size="large" (click)="showValue('0')" id="zero-btn">0</ion-button>
+      <ion-button strong="true" size="large">.</ion-button>
+      <ion-button strong="true" size="large" (click)="evaluate()">=</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
