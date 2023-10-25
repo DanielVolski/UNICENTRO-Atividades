@@ -1,38 +1,46 @@
 <ion-content>
+  <meta charset="utf-8" >
   <ion-list lines="none">
     <ion-item></ion-item>
-    <ion-item></ion-item>
     <ion-item>
-      <ion-input [ngModel]="expression" class="visor"></ion-input>
+      <!-- <ion-input [ngModel]="expression" id="expression"></ion-input> -->
+      <ion-input></ion-input>
     </ion-item>
     <ion-item>
-      <ion-button strong="true" size="large" class="first-line">AC</ion-button>
-      <ion-button strong="true" size="large" class="first-line">+/-</ion-button>
-      <ion-button strong="true" size="large" class="first-line">%</ion-button>
-      <ion-button strong="true" size="large" class="last-column" (click)="addOperation(3)">/</ion-button>
+      <ion-input [ngModel]="display" id="display"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-button strong="true" size="large" (click)="showValue('7')">7</ion-button>
-      <ion-button strong="true" size="large" (click)="showValue('8')">8</ion-button>
-      <ion-button strong="true" size="large" (click)="showValue('9')">9</ion-button>
-      <ion-button strong="true" size="large" class="last-column" (click)="addOperation(2)">X</ion-button>
+      <ion-button strong="true" size="large" class="first-line" (click)="clearDisplay()">AC</ion-button>
+      <ion-button strong="true" size="large" class="first-line" (click)="negate()">&#177;</ion-button>
+      <ion-button strong="true" size="large" class="first-line" (click)="percentage()">&#65285;</ion-button>
+      <!-- Division sign -->
+      <ion-button strong="true" size="large" class="last-column" (click)="handleOperation('/')">&#247;</ion-button>
     </ion-item>
     <ion-item>
-      <ion-button strong="true" size="large"(click)="showValue('4')">4</ion-button>
-      <ion-button strong="true" size="large" (click)="showValue('5')">5</ion-button>
-      <ion-button strong="true" size="large" (click)="showValue('6')">6</ion-button>
-      <ion-button strong="true" size="large" class="last-column" (click)="addOperation(1)">-</ion-button>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('\u0037')">&#55;</ion-button>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('\u0038')">&#56;</ion-button>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('\u0039')">&#57;</ion-button>
+      <!-- Multiplication sign -->
+      <ion-button strong="true" size="large" class="last-column" (click)="handleOperation('*')">&#215;</ion-button>
     </ion-item>
     <ion-item>
-      <ion-button strong="true" size="large" (click)="showValue('1')">1</ion-button>
-      <ion-button strong="true" size="large" (click)="showValue('2')">2</ion-button>
-      <ion-button strong="true" size="large" (click)="showValue('3')">3</ion-button>
-      <ion-button strong="true" size="large" class="last-column" (click)="addOperation(0)">+</ion-button>
+      <ion-button strong="true" size="large"(click)="displayButtonContent('\u0034')">&#52;</ion-button>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('\u0035')">&#53;</ion-button>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('\u0036')">&#54;</ion-button>
+      <!-- Minus sign -->
+      <ion-button strong="true" size="large" class="last-column" (click)="handleOperation('-')">&#45;</ion-button>
     </ion-item>
     <ion-item>
-      <ion-button strong="true" size="large" (click)="showValue('0')" id="zero-btn">0</ion-button>
-      <ion-button strong="true" size="large">.</ion-button>
-      <ion-button strong="true" size="large" (click)="evaluate()">=</ion-button>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('\u0031')">&#49;</ion-button>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('\u0032')">&#50;</ion-button>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('\u0033')">&#51;</ion-button>
+      <!-- Plus sign -->
+      <ion-button strong="true" size="large" class="last-column" (click)="handleOperation('+')">&#43;</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('0')" id="zero-btn">&#48;</ion-button>
+      <ion-button strong="true" size="large" (click)="displayButtonContent('.')">&#183;</ion-button>
+      <ion-button strong="true" size="large" (click)="evaluate()">&#61;</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
